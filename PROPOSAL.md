@@ -10,7 +10,7 @@
 
 </div>
 
-| Team | Ahmed Hussain and Maria |
+| Team | Ahmed Hussain and Maria Bano |
 |:---|:---|
 | **Institution** | Department of Artificial Intelligence, COMSATS University Islamabad, Lahore Campus |
 | **Status** | A working prototype, not a concept: an Android app, a web app and the full server system are built and running |
@@ -231,7 +231,7 @@ A screen recording of the assistant in use: the avatar speaking, the memory grap
 
 <div align="center">
 
-**AI Persona** &nbsp;·&nbsp; Ahmed Hussain and Maria &nbsp;·&nbsp; COMSATS University Islamabad, Lahore Campus
+**AI Persona** &nbsp;·&nbsp; Ahmed Hussain and Maria Bano &nbsp;·&nbsp; COMSATS University Islamabad, Lahore Campus
 
 [Website](https://aipersona.ahmedhussain.tech) &nbsp;·&nbsp; [Demo video](https://aipersona.ahmedhussain.tech/assets/aipersona-web-demo.mp4) &nbsp;·&nbsp; [GitHub](https://github.com/ahmed-hussain-ai/aipersona)
 
