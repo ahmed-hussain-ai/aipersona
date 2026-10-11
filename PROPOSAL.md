@@ -4,7 +4,7 @@
 
 ### A real-time talking avatar that acts on your accounts, asks before it acts, and remembers you
 
-**[Website](https://aipersona.ahmedhussain.tech)** &nbsp;·&nbsp; **[Demo video](https://github.com/ahmed-hussain-ai/aipersona/blob/main/demo/aipersona-web-demo.mp4)** &nbsp;·&nbsp; **[Screenshots and material](https://github.com/ahmed-hussain-ai/aipersona)**
+**[Website](https://aipersona.ahmedhussain.tech)** &nbsp;·&nbsp; **[Demo video](https://aipersona.ahmedhussain.tech/assets/aipersona-web-demo.mp4)** &nbsp;·&nbsp; **[Screenshots and material](https://github.com/ahmed-hussain-ai/aipersona)**
 
 <img src="https://raw.githubusercontent.com/ahmed-hussain-ai/aipersona/main/screenshots/web-assistant-conversation.png" alt="The AI Persona assistant: the avatar in its scene with the conversation beside it" width="900">
 
@@ -14,7 +14,7 @@
 |:---|:---|
 | **Institution** | Department of Artificial Intelligence, COMSATS University Islamabad, Lahore Campus |
 | **Status** | A working prototype, not a concept: an Android app, a web app and the full server system are built and running |
-| **Try it** | https://aipersona.ahmedhussain.tech |
+| **Live at** | https://aipersona.ahmedhussain.tech |
 
 ## At a glance
 
@@ -38,7 +38,7 @@ Assistants should solve this. The ones people have today do not:
 | **Phone assistants** (Siri, Google Assistant, Alexa) | Fast and always available | Act on personal data in only a few fixed ways, rarely confirm before acting, and guess or give up on a misheard name |
 | **Chat assistants** (ChatGPT, Claude and similar) | Understand almost any request | Built for typing: replies take several seconds, they cannot be interrupted, and a tool call can invent a detail such as an email address |
 | **Voice-agent platforms** | Let anyone build a talking agent | A voice alone is ordinary today, and many teams now build one |
-| **All of them** | | Do not remember the person well across conversations, and **none has a face** |
+| **All of them** | — | Do not remember the person well across conversations, and **none has a face** |
 
 > **The problem we address:** there is no assistant a person can both **see** and **trust with their own accounts**: one with a face that speaks in real time, fast enough for a real conversation, safe enough to send an email, and personal enough to know who "my supervisor" is.
 
@@ -92,7 +92,7 @@ Every reply is spoken by the avatar, with its lips in step with the voice.
 
 | Objective | Target | Where we are |
 |---|---|---|
-| **A real-time face** | 25 frames per second on one GPU, first frame within half a second | Achieved on the avatar server: 26.3 frames per second on one RTX 4090 in streaming mode, 258 ms of compute to the first frame. Demonstrated live at the final |
+| **A real-time face** | 25 frames per second on one GPU, first frame within half a second | Achieved on the avatar server: 26.3 frames per second on one RTX 4090 in streaming mode, 258 ms of compute to the first frame. To be demonstrated live at the final |
 | **A reply fast enough to feel like conversation** | The reply starts within 1 second of the user finishing | Measured on the live system: about 0.9 seconds (median) from the end of the user's speech to the start of the spoken reply, 0.77 seconds at its fastest |
 | **No change without permission** | Every email, booking and deletion confirmed first | Built in: every action that changes something goes through a confirmation step |
 | **Never act on a misheard name** | Ask instead of guess | Built in: "Did you mean Ali Hussain or Ali Malik?" |
@@ -103,9 +103,8 @@ Every reply is spoken by the avatar, with its lips in step with the voice.
 
 | What we tested | Result |
 |---|---|
-| **The whole system on a live account,** with every tool real. A request passes only if every check on it holds: the right tool, the right details, the right reply | |
-| &nbsp;&nbsp;510-request benchmark | **98%** (90% on the first run, before fixing what it found) |
-| &nbsp;&nbsp;512 new requests the system had never seen | **90%** |
+| **The whole system, end to end.** 510 requests on a live account with every tool real. A request passes only if every check on it holds: the right tool, the right details, the right reply | **98%** correct (90% on the first run, before fixing what it found) |
+| **New requests.** 512 requests the system had never seen, on the same live account | **90%** correct |
 | **Memory.** 50 questions from ten angles: working out an unstated relation, a wrong premise, counting, before and now, misheard names, Roman Urdu | **50 of 50** answered correctly |
 | **Reply speed** on the live system | **0.9 seconds** (median) from the end of speech to the start of the reply |
 | **Avatar** on one RTX 4090 | **26.3 frames per second**, 1 late frame in 430 |
@@ -131,20 +130,20 @@ Every reply is spoken by the avatar, with its lips in step with the voice.
 | Feature | What the user gets |
 |---|---|
 | **A real-time talking avatar** | A face generated from the assistant's speech, with lips, blinking and head movement, at video rate on one GPU. Made from a single photograph (a default persona or the user's own) and shown in a scene the user picks |
-| **Acts on the user's own accounts** | Gmail (read, search, write, reply, send), Google Calendar (check, book, move, cancel; understands "the day after tomorrow", "next Friday", "kal"), Contacts and Google Drive (found by meaning, not exact spelling), to-do list, reminders, weather, web search, nearby places |
+| **Acts on the user's own accounts** | Gmail (read, search, write, reply, send), Google Calendar (check, book, move, cancel; understands "the day after tomorrow", "next Friday", and "kal", Urdu for tomorrow), Contacts and Google Drive (found by meaning, not exact spelling), to-do list, reminders, weather, web search, nearby places |
 | **Answers from the user's documents** | Upload a PDF and ask questions about it; the source is named |
 | **Works while the user is away** | Conditional tasks in one sentence ("if she doesn't reply by 5, send a follow-up; if she does, thank her"), with a phone notification saying what was done |
 | **Safe by design** | Nothing is sent, booked or deleted without a "yes". An unclear name is asked about, never guessed. Text inside an incoming email is treated as data, never as an instruction |
 | **Remembers, and the user is in control** | Learns facts from conversation and links them in a graph, so it can answer "how is Waleed related to Sajid?" from what it was told. The user can see, correct or forget any of it, by tap or by voice |
 | **Feels like a conversation** | The reply starts about 0.9 seconds after the user stops speaking, and the assistant can be interrupted at any moment; it tells real interruptions from "okay" and "yeah" |
-| **Open to other apps** | Any app that offers an MCP server can be connected as the user's own tool |
+| **Open to other apps** | Any app that offers an MCP server (the open standard for connecting tools to AI assistants) can be added as the user's own tool |
 
 <div align="center">
 <img src="https://raw.githubusercontent.com/ahmed-hussain-ai/aipersona/main/screenshots/web-memory-graph.png" alt="The memory graph" width="860">
 <br><sub><b>The memory graph.</b> What the assistant has learned about the user: people, places and things, with the relation written on each line.</sub>
 </div>
 
-**Deliverables:** the Android app, the web app, the server system, an evaluation report, and a live demo.
+**Deliverables:** the Android app, the web app, the server system with the avatar server, an evaluation report, and a live demo.
 
 ---
 
@@ -204,7 +203,7 @@ The personal assistant is the first product, not the only one. A live avatar, a 
 
 A screen recording of the assistant in use: the avatar speaking, the memory graph, mail, calendar, contacts, voices and connected tools.
 
-**[Watch the demo video](https://github.com/ahmed-hussain-ai/aipersona/blob/main/demo/aipersona-web-demo.mp4)**
+**[Watch the demo video](https://aipersona.ahmedhussain.tech/assets/aipersona-web-demo.mp4)**
 
 ### More screenshots
 
@@ -234,6 +233,6 @@ A screen recording of the assistant in use: the avatar speaking, the memory grap
 
 **AI Persona** &nbsp;·&nbsp; Ahmed Hussain and Maria &nbsp;·&nbsp; COMSATS University Islamabad, Lahore Campus
 
-[Website](https://aipersona.ahmedhussain.tech) &nbsp;·&nbsp; [Demo video](https://github.com/ahmed-hussain-ai/aipersona/blob/main/demo/aipersona-web-demo.mp4) &nbsp;·&nbsp; [GitHub](https://github.com/ahmed-hussain-ai/aipersona)
+[Website](https://aipersona.ahmedhussain.tech) &nbsp;·&nbsp; [Demo video](https://aipersona.ahmedhussain.tech/assets/aipersona-web-demo.mp4) &nbsp;·&nbsp; [GitHub](https://github.com/ahmed-hussain-ai/aipersona)
 
 </div>

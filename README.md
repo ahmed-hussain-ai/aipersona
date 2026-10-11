@@ -61,7 +61,7 @@ Team: Ahmed Hussain and Maria, Department of Artificial Intelligence, COMSATS Un
 
 A screen recording of the assistant in use: the avatar speaking, a request carried out, and the confirmation before it acts.
 
-[Watch the demo video](demo/aipersona-web-demo.mp4)
+[Watch the demo video](https://aipersona.ahmedhussain.tech/assets/aipersona-web-demo.mp4)
 
 ## How it is built
 
