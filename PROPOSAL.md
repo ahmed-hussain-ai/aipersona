@@ -13,34 +13,25 @@
 | Team | Ahmed Hussain and Maria |
 |:---|:---|
 | **Institution** | Department of Artificial Intelligence, COMSATS University Islamabad, Lahore Campus |
-| **Status** | Built and running: an Android app, a web app and the full server system, developed from January to October 2026 |
+| **Status** | A working prototype, not a concept: an Android app, a web app and the full server system are built and running |
+| **Try it** | https://aipersona.ahmedhussain.tech |
 
 ## At a glance
 
-| A face that speaks | Fast enough to talk to | Safe to trust | Knows the user |
+| A face that speaks | Fast enough to talk to | Tested on a real account | Safe to trust |
 |:---:|:---:|:---:|:---:|
-| **26.3 frames per second** | **0.9 seconds** | **Every change confirmed** | **A memory graph** |
-| A talking avatar generated from the assistant's own speech on one GPU | From the end of the user's speech to the start of the reply (median) | Nothing is sent, booked or deleted without a yes | Facts learned in conversation, visible and removable by the user |
+| **26.3 frames per second** | **0.9 seconds** | **98% correct** | **Every change confirmed** |
+| A talking avatar generated from the assistant's own speech on one GPU | From the end of the user's speech to the start of the reply (median) | On our 510-request benchmark, run end to end with real Gmail, Calendar, Drive and Contacts | Nothing is sent, booked or deleted without a yes |
 
-## Contents
-
-1. [Project Overview and Problem Statement](#1-project-overview-and-problem-statement)
-2. [Proposed Solution](#2-proposed-solution)
-3. [Objectives and Expected Outcomes](#3-objectives-and-expected-outcomes)
-4. [Target Users](#4-target-users)
-5. [Key Features and Deliverables](#5-key-features-and-deliverables)
-6. [Implementation Plan and Timeline](#6-implementation-plan-and-timeline)
-7. [Resources and Requirements](#7-resources-and-requirements)
-8. [Potential Challenges and Risks](#8-potential-challenges-and-risks)
-9. [Additional Details](#9-additional-details)
+**Contents:** [1. Overview and Problem](#1-project-overview-and-problem-statement) · [2. Solution](#2-proposed-solution) · [3. Objectives and Outcomes](#3-objectives-and-expected-outcomes) · [4. Target Users](#4-target-users) · [5. Features and Deliverables](#5-key-features-and-deliverables) · [6. Plan and Timeline](#6-implementation-plan-and-timeline) · [7. Resources](#7-resources-and-requirements) · [8. Risks](#8-potential-challenges-and-risks) · [9. Additional Details](#9-additional-details)
 
 ---
 
 ## 1. Project Overview and Problem Statement
 
-A student or a professional keeps their day in apps that do not talk to each other: the calendar, the mail, the contacts, the files, a to-do list. Every small job, such as checking a meeting, replying to someone or finding a file, means opening an app, tapping, and reading on a small screen.
+People run their day across apps that do not talk to each other: mail, calendar, contacts, files, a to-do list. Every small job means opening an app, tapping, and reading on a small screen.
 
-Assistants should solve this, but the ones people have today do not.
+Assistants should solve this. The ones people have today do not:
 
 | Today's option | What it does well | Where it falls short |
 |---|---|---|
@@ -65,7 +56,15 @@ Behind the face is an agent that does real work. One spoken sentence is enough:
 
 The assistant finds Maria in the user's contacts, writes the email, shows it on a card and waits for a "yes". It then watches the inbox and does the right thing later, even when the user is away, and tells them what happened.
 
-### How one request works
+### From a spoken sentence to a finished task
+
+```
+Speak  ->  Understand  ->  Plan  ->  Show and wait for "yes"  ->  Act  ->  Report back
+
+Every reply is spoken by the avatar, with its lips in step with the voice.
+```
+
+### What that looks like in the app
 
 <table>
 <tr>
@@ -99,6 +98,18 @@ The assistant finds Maria in the user's contacts, writes the email, shows it on 
 | **Never act on a misheard name** | Ask instead of guess | Built in: "Did you mean Ali Hussain or Ali Malik?" |
 | **Remember the user** | Facts kept across sessions, visible and removable by the user | Working: a memory graph the user can see and edit |
 | **Many users, separate data** | Each user's own account, tools and memory | Working |
+
+### Evidence so far: tested, not just built
+
+| What we tested | Result |
+|---|---|
+| **The whole system on a live account,** with every tool real. A request passes only if every check on it holds: the right tool, the right details, the right reply | |
+| &nbsp;&nbsp;510-request benchmark | **98%** (90% on the first run, before fixing what it found) |
+| &nbsp;&nbsp;512 new requests the system had never seen | **90%** |
+| **Memory.** 50 questions from ten angles: working out an unstated relation, a wrong premise, counting, before and now, misheard names, Roman Urdu | **50 of 50** answered correctly |
+| **Reply speed** on the live system | **0.9 seconds** (median) from the end of speech to the start of the reply |
+| **Avatar** on one RTX 4090 | **26.3 frames per second**, 1 late frame in 430 |
+| **Automated tests** of the engine | **850 tests** |
 
 **Expected outcome:** a persona a person can see and talk to every day, that runs their email, calendar, files and tasks, with nothing done behind their back.
 
@@ -157,6 +168,7 @@ The assistant finds Maria in the user's contacts, writes the email, shows it on 
 | **Server** | One small cloud server (2 CPU cores, 8 GB memory) runs the engine, the backend and the website today |
 | **GPU** | One NVIDIA RTX 4090 (rented) for the live avatar. This is the main cost |
 | **Cloud services** | Speech-to-text and text-to-speech (Deepgram), fast language models (Cerebras, with Groq and OpenAI as fallbacks), Google APIs for the user's own accounts, Firebase for notifications |
+| **Our own code** | About 89,000 lines across four codebases (agent engine, mobile app, web app, account backend), with 12 tool agents |
 | **Free and open parts** | Weather, prayer times, maps, web search and OCR all use free services or open-source software |
 
 ---
@@ -176,17 +188,17 @@ The assistant finds Maria in the user's contacts, writes the email, shows it on 
 
 ## 9. Additional Details
 
-### What makes it different
+### Why this project
 
-1. **It has a face that speaks in real time.** Voice agents are common; a live avatar joined to a working agent is not.
-2. **It acts, and it asks first.** Most assistants do one or the other.
-3. **It keeps working after the conversation ends**, and reports back.
-4. **Its memory is a graph the user can see**, not a hidden profile.
-5. **It is built for how people here actually speak.**
+| The championship looks for | What AI Persona brings |
+|---|---|
+| **Innovation** | A live talking avatar joined to an agent that really acts. Voice agents are common; a face that speaks in real time on top of a working, trusted agent is not. Its memory is a graph the user can see and edit, not a hidden profile |
+| **Technical depth** | A real-time voice pipeline with a 0.9 second reply, a planner for requests with several parts, a confirmation step enforced in code, tasks that run later under a condition, a graph memory, and a talking-head model running faster than real time. All of it built, measured and tested |
+| **Real-world impact** | It works today on real Gmail, Calendar, Drive and Contacts. It keeps working after the conversation ends and reports back. It is built for how people here actually speak: Pakistani English, Roman Urdu and local names |
 
 ### Where it can go next
 
-The personal assistant is the first product, not the only one. The same four parts (a live avatar, a fast voice loop, an agent that uses tools safely, and a memory of the person) are what any talking persona needs. With different tools and knowledge the same system can become a teacher that explains a course and remembers each student, a receptionist or support agent for a business, or a guide for a service. We are keeping the scope to the personal assistant until it is solid, and we treat these as directions, not promises.
+The personal assistant is the first product, not the only one. A live avatar, a fast voice loop, an agent that uses tools safely and a memory of the person are what any talking persona needs: a teacher that remembers each student, a receptionist, a support agent. We are keeping the scope to the personal assistant until it is solid; these are directions, not promises.
 
 ### Demo video
 
